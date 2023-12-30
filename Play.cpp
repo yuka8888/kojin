@@ -2,6 +2,7 @@
 
 Play::Play() {
 	ball_ = new Ball;
+	player_ = new Player;
 }
 
 void Play::Update(char* keys, char preKeys[DIK_Q]) {
@@ -10,12 +11,15 @@ void Play::Update(char* keys, char preKeys[DIK_Q]) {
 	}
 
 	ball_->Update();
+	player_->Update();
 }
 
 void Play::Draw() {
 	ball_->Draw();
+	player_->Draw();
 }
 
 Play::~Play() {
 	delete ball_;
+	delete player_;
 }

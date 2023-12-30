@@ -4,7 +4,8 @@
 const int kWindowWide = 1280;
 const int kWindowHeight = 720;
 
-const Vector2 kBallPosition = { 800, 300 };
+const Vector2 kBallPosition = { 1000, 300 };
+const Vector2 kPlayerPosition = { 200, 300 };
 
 enum PitchType {
 	NORMAL,

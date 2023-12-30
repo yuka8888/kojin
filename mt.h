@@ -9,6 +9,11 @@ struct Vector2 final {
 	float y;
 };
 
+struct Vector2i final {
+	int x;
+	int y;
+};
+
 struct Vertex final {
 	float left;
 	float right;

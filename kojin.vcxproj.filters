@@ -52,6 +52,9 @@
     <ClCompile Include="Ball.cpp">
       <Filter>cppファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>cppファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -135,6 +138,9 @@
       <Filter>ヘッダファイル</Filter>
     </ClInclude>
     <ClInclude Include="Const.h">
+      <Filter>ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
       <Filter>ヘッダファイル</Filter>
     </ClInclude>
   </ItemGroup>
