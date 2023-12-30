@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 #define _USE_MATH_DEFINES
-#include "math.h"
+#include <math.h>
 #include <Novice.h>
 #include <assert.h>
 
@@ -42,20 +42,20 @@ static const int kRowHeight = 20;
 static const int kColumnWidth = 60;
 
 /// <summary>
-/// Å’Z‹——£
+/// æœ€çŸ­è·é›¢
 /// </summary>
 /// <param name="obj"></param>
 /// <returns></returns>
-float Length(Vector2 const& obj) {
+inline float Length(Vector2 const& obj) {
 	return sqrtf(obj.x * obj.x + obj.y * obj.y);
 }
 
 /// <summary>
-/// ³‹K‰»
+/// æ­£è¦åŒ–
 /// </summary>
 /// <param name="obj"></param>
 /// <returns></returns>
-Vector2 Normalize(Vector2 const& obj) {
+inline Vector2 Normalize(Vector2 const& obj) {
 	float length = 0;
 	Vector2 newObj = {};
 
@@ -72,32 +72,32 @@ Vector2 Normalize(Vector2 const& obj) {
 }
 
 /// <summary>
-/// “àÏ
+/// å†…ç©
 /// </summary>
 /// <param name="obj1"></param>
 /// <param name="obj2"></param>
 /// <returns></returns>
-float DotProduct(Vector2 const& obj1, Vector2 const& obj2) {
+inline float DotProduct(Vector2 const& obj1, Vector2 const& obj2) {
 	return obj1.x * obj2.x + obj1.y * obj2.y;
 }
 
 /// <summary>
-/// ŠOÏ
+/// å¤–ç©
 /// </summary>
 /// <param name="obj1"></param>
 /// <param name="obj2"></param>
 /// <returns></returns>
-float CrossProduct(Vector2 const& obj1, Vector2 const& obj2) {
+inline float CrossProduct(Vector2 const& obj1, Vector2 const& obj2) {
 	return obj1.x * obj2.y - obj1.y * obj2.x;
 }
 
 /// <summary>
-/// ‰ñ“]
+/// å›è»¢
 /// </summary>
-/// <param name="obj">ƒIƒuƒWƒFƒNƒg‚Ìl‹÷‚ÌÀ•W</param>
-/// <param name="num">‰½•ª‚Ì1ƒÎ‰ñ“]‚³‚¹‚é‚©</param>
+/// <param name="obj">ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å››éš…ã®åº§æ¨™</param>
+/// <param name="num">ä½•åˆ†ã®1Ï€å›è»¢ã•ã›ã‚‹ã‹</param>
 /// <returns></returns>
-ForCorners Rotate(ForCorners const& obj, float const& num) {
+inline ForCorners Rotate(ForCorners const& obj, float const& num) {
 	ForCorners newObj = {};
 
 	float theta = 1.0f / num * float(M_PI);
@@ -114,12 +114,12 @@ ForCorners Rotate(ForCorners const& obj, float const& num) {
 }
 
 /// <summary>
-/// s—ñ‚Ì‰ÁZ
+/// è¡Œåˆ—ã®åŠ ç®—
 /// </summary>
 /// <param name="matrix1"></param>
 /// <param name="matrix2"></param>
 /// <returns></returns>
-Matrix2x2 Add(Matrix2x2 matrix1, Matrix2x2 matrix2) {
+inline Matrix2x2 Add(Matrix2x2 matrix1, Matrix2x2 matrix2) {
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 2; j++) {
 			matrix1.m[i][j] += matrix2.m[i][j];
@@ -129,12 +129,12 @@ Matrix2x2 Add(Matrix2x2 matrix1, Matrix2x2 matrix2) {
 }
 
 /// <summary>
-/// s—ñ‚ÌŒ¸Z
+/// è¡Œåˆ—ã®æ¸›ç®—
 /// </summary>
 /// <param name="matrix1"></param>
 /// <param name="matrix2"></param>
 /// <returns></returns>
-Matrix2x2 Subtract(Matrix2x2 matrix1, Matrix2x2 matrix2) {
+inline Matrix2x2 Subtract(Matrix2x2 matrix1, Matrix2x2 matrix2) {
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 2; j++) {
 			matrix1.m[i][j] -= matrix2.m[i][j];
@@ -144,12 +144,12 @@ Matrix2x2 Subtract(Matrix2x2 matrix1, Matrix2x2 matrix2) {
 }
 
 /// <summary>
-/// s—ñ‚ÌÏ
+/// è¡Œåˆ—ã®ç©
 /// </summary>
 /// <param name="matrix1"></param>
 /// <param name="matrix2"></param>
 /// <returns></returns>
-Matrix3x3 Multiply(Matrix3x3 matrix1, Matrix3x3 matrix2) {
+inline Matrix3x3 Multiply(Matrix3x3 matrix1, Matrix3x3 matrix2) {
 	Matrix3x3 matrix3 = {};
 
 	matrix3.m[0][0] = matrix1.m[0][0] * matrix2.m[0][0] + matrix1.m[0][1] * matrix2.m[1][0] + matrix1.m[0][2] * matrix2.m[2][0];
@@ -165,12 +165,12 @@ Matrix3x3 Multiply(Matrix3x3 matrix1, Matrix3x3 matrix2) {
 }
 
 /// <summary>
-/// s—ñ‚ÌÏ
+/// è¡Œåˆ—ã®ç©
 /// </summary>
 /// <param name="matrix1"></param>
 /// <param name="matrix2"></param>
 /// <returns></returns>
-Matrix2x2 Multiply(Matrix2x2 matrix1, Matrix2x2 matrix2) {
+inline Matrix2x2 Multiply(Matrix2x2 matrix1, Matrix2x2 matrix2) {
 	Matrix2x2 matrix3 = {};
 
 	matrix3.m[0][0] = matrix1.m[0][0] * matrix2.m[0][0] + matrix1.m[0][1] * matrix2.m[1][0];
@@ -181,12 +181,12 @@ Matrix2x2 Multiply(Matrix2x2 matrix1, Matrix2x2 matrix2) {
 }
 
 /// <summary>
-/// ƒxƒNƒgƒ‹‚Æs—ñ‚ÌÏ
+/// ãƒ™ã‚¯ãƒˆãƒ«ã¨è¡Œåˆ—ã®ç©
 /// </summary>
 /// <param name="vector"></param>
 /// <param name="matrix"></param>
 /// <returns></returns>
-Vector2 Multiply(Vector2 vector, Matrix2x2 matrix) {
+inline Vector2 Multiply(Vector2 vector, Matrix2x2 matrix) {
 	Vector2 obj = {};
 	obj.x = vector.x * matrix.m[0][0] + vector.y * matrix.m[1][0];
 	obj.y = vector.x * matrix.m[0][1] + vector.y * matrix.m[1][1];
@@ -195,11 +195,11 @@ Vector2 Multiply(Vector2 vector, Matrix2x2 matrix) {
 }
 
 /// <summary>
-/// ‹ts—ñ
+/// é€†è¡Œåˆ—
 /// </summary>
 /// <param name="matrix"></param>
 /// <returns></returns>
-Matrix2x2 Inverse(Matrix2x2 matrix) {
+inline Matrix2x2 Inverse(Matrix2x2 matrix) {
 	Matrix2x2 matrix2 = {};
 	float num = 1.0f / (matrix.m[0][0] * matrix.m[1][1] - matrix.m[0][1] * matrix.m[1][0]);
 
@@ -212,11 +212,11 @@ Matrix2x2 Inverse(Matrix2x2 matrix) {
 }
 
 /// <summary>
-/// ‹ts—ñ
+/// é€†è¡Œåˆ—
 /// </summary>
 /// <param name="matrix"></param>
 /// <returns></returns>
-Matrix3x3 Inverse(Matrix3x3 matrix) {
+inline Matrix3x3 Inverse(Matrix3x3 matrix) {
 	Matrix3x3 matrix2 = {};
 	float num = 1.0f / (matrix.m[0][0] * matrix.m[1][1] * matrix.m[2][2] +
 		matrix.m[0][1] * matrix.m[1][2] * matrix.m[2][1] +
@@ -239,11 +239,11 @@ Matrix3x3 Inverse(Matrix3x3 matrix) {
 }
 
 /// <summary>
-/// ‰ñ“]s—ñ
+/// å›è»¢è¡Œåˆ—
 /// </summary>
 /// <param name="theta"></param>
 /// <returns></returns>
-Matrix2x2 MakeRotateMatrix(float theta) {
+inline Matrix2x2 MakeRotateMatrix(float theta) {
 	Matrix2x2 matrix = {};
 	matrix.m[0][0] = float(cos(theta));
 	matrix.m[0][1] = float(sin(theta));
@@ -253,11 +253,11 @@ Matrix2x2 MakeRotateMatrix(float theta) {
 }
 
 /// <summary>
-/// ‰ñ“]s—ñ
+/// å›è»¢è¡Œåˆ—
 /// </summary>
 /// <param name="theta"></param>
 /// <returns></returns>
-Matrix3x3 MakeRotateMatrix3x3(float theta) {
+inline Matrix3x3 MakeRotateMatrix3x3(float theta) {
 	Matrix3x3 matrix = {};
 	matrix.m[0][0] = float(cos(theta));
 	matrix.m[0][1] = float(sin(theta));
@@ -268,11 +268,11 @@ Matrix3x3 MakeRotateMatrix3x3(float theta) {
 }
 
 /// <summary>
-/// •½sˆÚ“®s—ñ‚Ìì¬
+/// å¹³è¡Œç§»å‹•è¡Œåˆ—ã®ä½œæˆ
 /// </summary>
 /// <param name="translate"></param>
 /// <returns></returns>
-Matrix3x3 MakeTransLateMatrix(Vector2 translate) {
+inline Matrix3x3 MakeTransLateMatrix(Vector2 translate) {
 	Matrix3x3 matrix = {};
 	matrix.m[0][0] = 1.0f;
 	matrix.m[1][1] = 1.0f;
@@ -284,11 +284,11 @@ Matrix3x3 MakeTransLateMatrix(Vector2 translate) {
 }
 
 /// <summary>
-/// Šg‘åk¬s—ñ‚Ìì¬
+/// æ‹¡å¤§ç¸®å°è¡Œåˆ—ã®ä½œæˆ
 /// </summary>
 /// <param name="scale"></param>
 /// <returns></returns>
-Matrix3x3 MakeScaleMatrix(Vector2 scale) {
+inline Matrix3x3 MakeScaleMatrix(Vector2 scale) {
 	Matrix3x3 matrix = {};
 	matrix.m[0][0] = scale.x;
 	matrix.m[1][1] = scale.y;
@@ -297,23 +297,23 @@ Matrix3x3 MakeScaleMatrix(Vector2 scale) {
 }
 
 /// <summary>
-/// ƒAƒtƒBƒ“s—ñ
+/// ã‚¢ãƒ•ã‚£ãƒ³è¡Œåˆ—
 /// </summary>
 /// <param name="scale"></param>
 /// <param name="rotate"></param>
 /// <param name="translate"></param>
 /// <returns></returns>
-Matrix3x3 MakeAffineMatrix(Vector2 scale, float rotate, Vector2 translate) {
+inline Matrix3x3 MakeAffineMatrix(Vector2 scale, float rotate, Vector2 translate) {
 	return Multiply(Multiply(MakeScaleMatrix(scale), MakeRotateMatrix3x3(rotate)), MakeTransLateMatrix(translate));
 }
 
 /// <summary>
-/// 2ŸŒ³ƒxƒNƒgƒ‹‚ğ“¯ŸÀ•W‚É•ÏŠ·
+/// 2æ¬¡å…ƒãƒ™ã‚¯ãƒˆãƒ«ã‚’åŒæ¬¡åº§æ¨™ã«å¤‰æ›
 /// </summary>
 /// <param name="vector"></param>
 /// <param name="matrix"></param>
 /// <returns></returns>
-Vector2 Transform(Vector2 vector, Matrix3x3 matrix) {
+inline Vector2 Transform(Vector2 vector, Matrix3x3 matrix) {
 	Vector2 result = {};
 
 	result.x = vector.x * matrix.m[0][0] + vector.y * matrix.m[1][0] + 1.0f * matrix.m[2][0];
@@ -328,11 +328,11 @@ Vector2 Transform(Vector2 vector, Matrix3x3 matrix) {
 }
 
 /// <summary>
-/// “]’us—ñ‚ğ‹‚ß‚é
+/// è»¢ç½®è¡Œåˆ—ã‚’æ±‚ã‚ã‚‹
 /// </summary>
 /// <param name="matrix"></param>
 /// <returns></returns>
-Matrix2x2 Transpose(Matrix2x2 matrix) {
+inline Matrix2x2 Transpose(Matrix2x2 matrix) {
 	Matrix2x2 matrix2 = {};
 
 	matrix2.m[0][0] = matrix.m[0][0];
@@ -344,11 +344,11 @@ Matrix2x2 Transpose(Matrix2x2 matrix) {
 }
 
 /// <summary>
-/// “]’us—ñ‚ğ‹‚ß‚é
+/// è»¢ç½®è¡Œåˆ—ã‚’æ±‚ã‚ã‚‹
 /// </summary>
 /// <param name="matrix"></param>
 /// <returns></returns>
-Matrix3x3 Transpose(Matrix3x3 matrix) {
+inline Matrix3x3 Transpose(Matrix3x3 matrix) {
 	Matrix3x3 matrix2 = {};
 
 	matrix2.m[0][0] = matrix.m[0][0];
@@ -365,12 +365,12 @@ Matrix3x3 Transpose(Matrix3x3 matrix) {
 }
 
 /// <summary>
-/// 2x2s—ñ‚Ì•\¦
+/// 2x2è¡Œåˆ—ã®è¡¨ç¤º
 /// </summary>
 /// <param name="x"></param>
 /// <param name="y"></param>
 /// <param name="matrix"></param>
-void MatrixScreenPrintf(int x, int y, Matrix2x2 matrix) {
+inline void MatrixScreenPrintf(int x, int y, Matrix2x2 matrix) {
 	for (int row = 0; row < 2; ++row) {
 		for (int column = 0; column < 2; ++column) {
 			Novice::ScreenPrintf(x + column * kColumnWidth, y + row * kRowHeight, "%.02f", matrix.m[row][column]);
@@ -379,12 +379,12 @@ void MatrixScreenPrintf(int x, int y, Matrix2x2 matrix) {
 }
 
 /// <summary>
-/// 3x3s—ñ‚Ì•\¦
+/// 3x3è¡Œåˆ—ã®è¡¨ç¤º
 /// </summary>
 /// <param name="x"></param>
 /// <param name="y"></param>
 /// <param name="matrix"></param>
-void MatrixScreenPrintf(int x, int y, Matrix3x3 matrix) {
+inline void MatrixScreenPrintf(int x, int y, Matrix3x3 matrix) {
 	for (int row = 0; row < 3; ++row) {
 		for (int column = 0; column < 3; ++column) {
 			Novice::ScreenPrintf(x + column * kColumnWidth, y + row * kRowHeight, "%.02f", matrix.m[row][column]);
@@ -393,14 +393,14 @@ void MatrixScreenPrintf(int x, int y, Matrix3x3 matrix) {
 }
 
 /// <summary>
-/// ³Ë‰es—ñ
+/// æ­£å°„å½±è¡Œåˆ—
 /// </summary>
 /// <param name="left"></param>
 /// <param name="top"></param>
 /// <param name="right"></param>
 /// <param name="bottom"></param>
 /// <returns></returns>
-Matrix3x3 MakeOrthographicMatrix(float left, float top, float right, float bottom) {
+inline Matrix3x3 MakeOrthographicMatrix(float left, float top, float right, float bottom) {
 	Matrix3x3 matrix = {};
 
 	matrix.m[0][0] = 2.0f / (right - left);
@@ -413,14 +413,14 @@ Matrix3x3 MakeOrthographicMatrix(float left, float top, float right, float botto
 }
 
 /// <summary>
-/// ƒrƒ…[ƒ|[ƒgs—ñ
+/// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—
 /// </summary>
 /// <param name="left"></param>
 /// <param name="top"></param>
 /// <param name="width"></param>
 /// <param name="height"></param>
 /// <returns></returns>
-Matrix3x3 MakeViewportMatrix(float left, float top, float width, float height) {
+inline Matrix3x3 MakeViewportMatrix(float left, float top, float width, float height) {
 	Matrix3x3 matrix = {};
 
 	matrix.m[0][0] = width / 2.0f;
@@ -433,47 +433,47 @@ Matrix3x3 MakeViewportMatrix(float left, float top, float width, float height) {
 }
 
 /// <summary>
-/// ƒxƒNƒ^[‚Ì•\¦
+/// ãƒ™ã‚¯ã‚¿ãƒ¼ã®è¡¨ç¤º
 /// </summary>
 /// <param name="x"></param>
 /// <param name="y"></param>
 /// <param name="vector"></param>
-void VectorScreenPrintf(int x, int y, Vector2 vector) {
+inline void VectorScreenPrintf(int x, int y, Vector2 vector) {
 	Novice::ScreenPrintf(x, y, "%.02f", vector.x);
 	Novice::ScreenPrintf(x + kColumnWidth, y, "%.02f", vector.y);
 }
 
 /// <summary>
-/// ƒXƒNƒŠ[ƒ“À•W•ÏŠ·
+/// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™å¤‰æ›
 /// </summary>
 /// <param name="position"></param>
 /// <returns></returns>
-Vector2 ScreenCoodinate(Vector2 position) {
+inline Vector2 ScreenCoodinate(Vector2 position) {
 	position.y = (position.y - 500) * -1;
 
 	return position;
 }
 
 /// <summary>
-/// üŒ`•âŠÔ
+/// ç·šå½¢è£œé–“
 /// </summary>
 /// <param name="a"></param>
 /// <param name="b"></param>
 /// <param name="t"></param>
 /// <returns></returns>
-Vector2 Lerp(const Vector2& a, const Vector2& b, float t) {
+inline Vector2 Lerp(const Vector2& a, const Vector2& b, float t) {
 	return { t * a.x + (1.0f - t) * b.x, t * a.y + (1.0f - t) * b.y };
 }
 
 /// <summary>
-/// 2ŸƒxƒWƒG‹Èüã‚Ì“_‚ğ‹‚ß‚é
+/// 2æ¬¡ãƒ™ã‚¸ã‚¨æ›²ç·šä¸Šã®ç‚¹ã‚’æ±‚ã‚ã‚‹
 /// </summary>
 /// <param name="p0"></param>
 /// <param name="pi"></param>
 /// <param name="p2"></param>
 /// <param name="t"></param>
 /// <returns></returns>
-Vector2 Bezier(const Vector2& p0, const Vector2& p1, const Vector2& p2, float t) {
+inline Vector2 Bezier(const Vector2& p0, const Vector2& p1, const Vector2& p2, float t) {
 	Vector2 p0p1 = Lerp(p0, p1, t);
 
 	Vector2 p1p2 = Lerp(p1, p2, t);
@@ -482,7 +482,7 @@ Vector2 Bezier(const Vector2& p0, const Vector2& p1, const Vector2& p2, float t)
 }
 
 /// <summary>
-/// ƒXƒvƒ‰ƒCƒ“‹Èü
+/// ã‚¹ãƒ—ãƒ©ã‚¤ãƒ³æ›²ç·š
 /// </summary>
 /// <param name="p0"></param>
 /// <param name="p1"></param>
@@ -490,7 +490,7 @@ Vector2 Bezier(const Vector2& p0, const Vector2& p1, const Vector2& p2, float t)
 /// <param name="p3"></param>
 /// <param name="t"></param>
 /// <returns></returns>
-Vector2 CatmullRom(const Vector2& p0, const Vector2& p1, const Vector2& p2, const Vector2& p3, float t) {
+inline Vector2 CatmullRom(const Vector2& p0, const Vector2& p1, const Vector2& p2, const Vector2& p3, float t) {
 	Vector2 position = {};
 
 	position.x = 1.0f / 2.0f * ((-p0.x + 3.0f * p1.x - 3 * p2.x + p3.x) * t * t * t +
@@ -506,14 +506,39 @@ Vector2 CatmullRom(const Vector2& p0, const Vector2& p1, const Vector2& p2, cons
 }
 
 /// <summary>
-/// 
+/// wvpVpå¤‰æ›
 /// </summary>
+/// <param name="worldMatrix"></param>
+/// <param name="cameraWorldMatrix"></param>
+/// <param name="cameraVertex"></param>
+/// <param name="viewPortPosition"></param>
+/// <param name="viewPortSize"></param>
 /// <returns></returns>
-Matrix3x3 CoordinateTransformation(Matrix3x3 cameraWorldMatrix, Vertex cameraVertex, Vector2 viewPortPosition, Vector2 viewPortSize) {
+inline Matrix3x3 MakewvpVpMatrix(Matrix3x3 worldMatrix, Matrix3x3 cameraWorldMatrix, Vertex cameraVertex, Vector2 viewPortPosition, Vector2 viewPortSize) {
 	Matrix3x3 viewMatrix = Inverse(cameraWorldMatrix);
 	Matrix3x3 orthoMatrix = MakeOrthographicMatrix(cameraVertex.left, cameraVertex.top, cameraVertex.right, cameraVertex.bottom);
 	Matrix3x3 viewportMatrix = MakeViewportMatrix(viewPortPosition.x, viewPortPosition.y, viewPortSize.x, viewPortSize.y);
 
 	Matrix3x3 vpVpMatrix = Multiply(viewMatrix, orthoMatrix);
-	return vpVpMatrix = Multiply(vpVpMatrix, viewportMatrix);
+	vpVpMatrix = Multiply(vpVpMatrix, viewportMatrix);
+
+	return Multiply(worldMatrix, vpVpMatrix);
+
+}
+
+/// <summary>
+/// vpVpå¤‰æ›
+/// </summary>
+/// <param name="cameraWorldMatrix"></param>
+/// <param name="cameraVertex"></param>
+/// <param name="viewPortPosition"></param>
+/// <param name="viewPortSize"></param>
+/// <returns></returns>
+inline Matrix3x3 MakevpVpMatrix(Matrix3x3 cameraWorldMatrix, Vertex cameraVertex, Vector2 viewPortPosition, Vector2 viewPortSize) {
+	Matrix3x3 viewMatrix = Inverse(cameraWorldMatrix);
+	Matrix3x3 orthoMatrix = MakeOrthographicMatrix(cameraVertex.left, cameraVertex.top, cameraVertex.right, cameraVertex.bottom);
+	Matrix3x3 viewportMatrix = MakeViewportMatrix(viewPortPosition.x, viewPortPosition.y, viewPortSize.x, viewPortSize.y);
+
+	Matrix3x3 vpVpMatrix = Multiply(viewMatrix, orthoMatrix);
+	return Multiply(vpVpMatrix, viewportMatrix);
 }

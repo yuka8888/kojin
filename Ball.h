@@ -1,6 +1,7 @@
 #pragma once
-#include <mt.h>
-#include <Const.h>
+#include <Novice.h>
+#include "mt.h"
+#include "Const.h"
 
 class Ball
 {
@@ -12,9 +13,15 @@ public:
 
 	void Draw();
 
-	void IsMove_(bool isMove) { isMove_ = isMove };
+	void IsMove_(bool isMove) { isMove_ = isMove; }
 
 private:
+	int texture = Novice::LoadTexture("./images/baseball.png");
+
+	Vertex cameraVertex_;
+	Matrix3x3 cameraWorldMatrix_;
+	Vector2 viewPortPosition_;
+	Vector2 viewPortSize_;
 
 	Vertex vertex_;
 	Vector2 position_;
@@ -25,7 +32,7 @@ private:
 	PitchType pitchType_;
 
 	Matrix3x3 worldMatrix_;
-	Matrix3x3 vpVpMatrix_;
-	Vector2 screenPosition_;
-}
-
+	Matrix3x3 wvpVpMatrix_;
+	Vector2 screenLeftTop_;
+	Vector2 screenRightBottom_;
+};

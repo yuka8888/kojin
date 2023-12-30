@@ -1,6 +1,5 @@
 #include <Novice.h>
-#include <Play.h>
-#include <CameraManager.h>
+#include "Play.h"
 
 const char kWindowTitle[] = "GC1A_03_オノセ_ユウカ";
 
@@ -14,7 +13,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	char keys[256] = {0};
 	char preKeys[256] = {0};
 
-	CameraManager* cameraManager = new CameraManager;
 	Play* play = new Play;
 
 	// ウィンドウの×ボタンが押されるまでループ
@@ -51,6 +49,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			break;
 		}
 	}
+
+	delete play;
 
 	// ライブラリの終了
 	Novice::Finalize();
