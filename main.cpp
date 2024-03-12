@@ -1,8 +1,8 @@
 #include <Novice.h>
-#include <Play.h>
-#include <CameraManager.h>
+#include "Play.h"
+#include "Title.h"
 
-const char kWindowTitle[] = "GC1A_03_オノセ_ユウカ";
+const char kWindowTitle[] = "GC1A_03_オノセ_ユウカ_フルスイング";
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
@@ -11,11 +11,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	Novice::Initialize(kWindowTitle, kWindowWide, kWindowHeight);
 
 	// キー入力結果を受け取る箱
-	char keys[256] = {0};
-	char preKeys[256] = {0};
+	char keys[256] = { 0 };
+	char preKeys[256] = { 0 };
 
-	CameraManager* cameraManager = new CameraManager;
+	Scene scene = TITLE;
+
 	Play* play = new Play;
+	Title* title = new Title;	
+	int audioHandle1 = Novice::LoadAudio("./images/stage.mp3");
+	int playHandle1 = -1;
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -29,8 +33,31 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓更新処理ここから
 		///
-		play->Update(keys, preKeys);
-		play->Draw();
+
+		if (!Novice::IsPlayingAudio(playHandle1)) {
+			playHandle1 = Novice::PlayAudio(audioHandle1, false, 0.5f);
+		}
+
+		switch (scene) {
+			case TITLE:
+				title->Update(keys);
+				title->Draw();
+				if (title->GetIsNextScene() == true) {
+					scene = PLAY;
+					title->Initialization();
+				}
+				break;
+
+			case PLAY:
+				play->Update(keys, preKeys);
+				play->Draw();
+				if (play->GetIsNextScene() == true) {
+					scene = play->GetNextScene();
+					play->Initialization();
+				}
+				break;
+
+		}
 		///
 		/// ↑更新処理ここまで
 		///
@@ -51,6 +78,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			break;
 		}
 	}
+
+	delete play;
 
 	// ライブラリの終了
 	Novice::Finalize();

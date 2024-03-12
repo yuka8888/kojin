@@ -52,7 +52,10 @@
     <ClCompile Include="Ball.cpp">
       <Filter>cppファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CameraManager.cpp">
+    <ClCompile Include="Player.cpp">
+      <Filter>cppファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
       <Filter>cppファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -140,7 +143,10 @@
     <ClInclude Include="Const.h">
       <Filter>ヘッダファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CameraManager.h">
+    <ClInclude Include="Player.h">
+      <Filter>ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
       <Filter>ヘッダファイル</Filter>
     </ClInclude>
   </ItemGroup>
