@@ -8,11 +8,18 @@ Player::Player() {
 	radius_.y = 32;
 	size_.x = radius_.x * 2;
 	size_.y = radius_.y * 2;
+	swingSpeed_ = (2.0f * 3.14f) / 20.0f;
+	isSwing_ = false;
+	isHit_ = false;
+
+	distance_ = 0.0f;
 
 	vertex_.bottom = (float)-radius_.y;
 	vertex_.top = (float)radius_.y;
 	vertex_.left = (float)-radius_.x;
 	vertex_.right = (float)radius_.x;
+
+	ballPosition_ = {};
 
 	//カメラ
 	cameraWorldMatrix_.m[0][0] = 1;
@@ -36,13 +43,32 @@ Player::Player() {
 }
 
 void Player::Update() {
+	if (isSwing_ == true) {
+		rotate_ += swingSpeed_;
+		if (rotate_ >= 2.0f * 3.14f) {
+			isSwing_ = false;
+			rotate_ = 0.0f;
+		}
+		//ボールを打てたか
+		else if ((rotate_ >= 2.95f && rotate_ <= 3.5f) && (ballPosition_.x - position_.x) <= 64.0f && (ballPosition_.x - position_.x) >= -16.0f && isHit_ == false){
+   			isHit_ = true;
+			distance_ = abs(position_.x - ballPosition_.x);
+			if (distance_ <= 10.0f) {
+				distance_ = 10.0f;
+			}
+			distance_ += rand() % 10 + 8;
+		}
+	}
 
 	//カメラ
-	worldMatrix_ = MakeAffineMatrix(scale_, rotate_, position_);
-	wvpVpMatrix_ = MakewvpVpMatrix(worldMatrix_, cameraWorldMatrix_, cameraVertex_, viewPortPosition_, viewPortSize_);
 }
 
 void Player::Draw() {
+	worldMatrix_ = MakeSTRMatrix(scale_, rotate_, Vector2{0.0f, 28.0f});
+	translateMatrix_ = MakeTransLateMatrix(position_);
+	worldMatrix_ = Multiply(worldMatrix_, translateMatrix_);
+	wvpVpMatrix_ = MakewvpVpMatrix(worldMatrix_, cameraWorldMatrix_, cameraVertex_, viewPortPosition_, viewPortSize_);
+
 	screenLeftTop_ = Transform({ vertex_.left, vertex_.top }, wvpVpMatrix_);
 	screenLeftBottom_ = Transform({ vertex_.left, vertex_.bottom }, wvpVpMatrix_);
 	screenRightTop_ = Transform({ vertex_.right, vertex_.top }, wvpVpMatrix_);

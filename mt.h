@@ -312,6 +312,10 @@ inline Matrix3x3 MakeAffineMatrix(Vector2 scale, float rotate, Vector2 translate
 	return Multiply(Multiply(MakeScaleMatrix(scale), MakeRotateMatrix3x3(rotate)), MakeTransLateMatrix(translate));
 }
 
+inline Matrix3x3 MakeSTRMatrix(Vector2 scale, float rotate, Vector2 translate) {
+	return Multiply(Multiply(MakeScaleMatrix(scale), MakeTransLateMatrix(translate)), MakeRotateMatrix3x3(rotate));
+}
+
 /// <summary>
 /// 2次元ベクトルを同次座標に変換
 /// </summary>
@@ -546,4 +550,24 @@ inline Matrix3x3 MakevpVpMatrix(Matrix3x3 cameraWorldMatrix, Vertex cameraVertex
 
 	Matrix3x3 vpVpMatrix = Multiply(viewMatrix, orthoMatrix);
 	return Multiply(vpVpMatrix, viewportMatrix);
+}
+
+inline float EaseOutElastic(float t) {
+	const float c4 = (2.0f * float(M_PI) / 3.0f);
+
+	return t == 0 ?
+		0
+		: t == 1.0f ?
+		1.0f
+		: powf(2.0f, -10.0f * t) * sinf((t * 10.0f - 0.75f) * c4) + 1;
+}
+
+inline float easeInOutBack(float t){
+const float c1 = 1.70158f;
+const float c2 = c1 * 1.525f;
+
+return t < 0.5
+	?
+	(powf(2.0f * t, 2) * ((c2 + 1.0f) * 2 * t - c2)) / 2.0f
+	: (powf(2.0f * t - 2, 2) * ((c2 + 1.0f) * (t * 2.0f - 2.0f) + c2) + 2.0f) / 2.0f;
 }
